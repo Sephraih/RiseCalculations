@@ -10,6 +10,7 @@ import { ChartsComponent } from './charts/charts.component';
 import { SigmoidService } from './services/sigmoid.service';
 import { NormaliserService } from './services/normaliser.service';
 import { ExponentialApproachService } from './services/exponentialApproach.service';
+import { LinearService } from './services/linear.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ExponentialApproachService } from './services/exponentialApproach.servi
     ParserService,
     SigmoidService,
     NormaliserService,
-    ExponentialApproachService
+    ExponentialApproachService,
+    LinearService
 	],
   bootstrap: [AppComponent]
 })

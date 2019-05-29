@@ -26,8 +26,8 @@ export class ExponentialApproachService {
       x = x**2;
 
       if(a<50){return Math.round(50-x);}
-      else if(a>50){return Math.round(50+x);}
-      else return 50;
+      if(a>50){return Math.round(50+x);}
+      return 50;
     }
 
 

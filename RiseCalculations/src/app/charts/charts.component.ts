@@ -9,6 +9,8 @@ import * as d3Axis from 'd3-axis';
 import { SigmoidService } from '../services/sigmoid.service';
 import { ExponentialApproachService } from '../services/exponentialApproach.service';
 import { Lineary } from '../calculations/Lineary';
+import { LinearFunctionModel } from '../models/function.models';
+import { LinearService } from '../services/linear.service';
 
 
 /* Url: localhost:4200/charts */
@@ -42,16 +44,37 @@ export class ChartsComponent implements OnInit {
 	private _numberOfVerticalGridlines: number = 10;
 	private _numberOfHorizontalGridlines: number = 10;
 
-    constructor(private sigmoidService: SigmoidService, private exponentialApproeachService:ExponentialApproachService) {}
+    constructor(private sigmoidService: SigmoidService,
+                private exponentialApproeachService:ExponentialApproachService,
+                private linearService: LinearService) {}
 
     ngOnInit() {
         
-        for(let i = 0; i <= 100; i+=10){
-			console.log(i, this.ltest.evaluate(i));
-		}
-        //load example functions to the datasource
-        this.addFunctions();
 
+        // testing environment, predefined calls to draw some functions
+        //load sigmoids sigmoids with scale 1,2 and 3
+        for(let j=1; j <= 3; j+=1){
+            this.addSigmoid(j);
+        }
+        /*
+        
+        this.addSigmoid(0.5)
+        
+        this.addSigmoid(0.7);
+        
+
+        //load exp approach with base 7
+        this.addExpApp(7);
+
+        //load GreenhouseGasBilance example; see appold.ts for reference, this is the forumua from the excel sheet
+        this.addGreenhouse();
+        //simulate the GreenhouseGasBilance example with the Lineary function,using the example's parameters to build it
+        //both functions return the exact same graph, graph is the same as in the excel sheet as well, they are hardcoded examples
+        this.addGreenhouseLineary();
+        */
+        this.linearServiceTest();
+
+        
         this.data = this.datascource.map((v) => v.values.map((v) => v.xValue ))[0];
         //.reduce((a, b) => a.concat(b), []);
 
@@ -139,35 +162,6 @@ export class ChartsComponent implements OnInit {
 
     }
 
-    // testing environment, predefined calls to draw some functions
-    addFunctions():void{
-        
-        
-        //load sigmoids sigmoids with scale 1,2 and 3
-        for(let j=1; j <= 3; j+=1){
-            this.addSigmoid(j);
-        }
-        /*
-        
-        this.addSigmoid(0.5)
-        
-        this.addSigmoid(0.7);
-        
-
-        //load exp approach with base 7
-        this.addExpApp(7);
-
-        //load GreenhouseGasBilance example; see appold.ts for reference, this is the forumua from the excel sheet
-        this.addGreenhouse();
-        //simulate the GreenhouseGasBilance example with the Lineary function,using the example's parameters to build it
-        //both functions return the exact same graph, graph is the same as in the excel sheet as well, they are hardcoded examples
-        this.addGreenhouseLineary();
-        */
-        this.addLinearyTest(); // f(x) = x ; a=1, b=0, max =100, min = 0
-        
-
-    }
-    
     //pushes an entry to the dataset for each x : 0 <= x <= 100 ; x%10 =0,  j = scale, y = Sigmoid(x,j).
     addSigmoid(j:number):void{
         let inner= [];
@@ -192,36 +186,6 @@ export class ChartsComponent implements OnInit {
                 });
     }
 
-    //hardcoded linear function, could work with parameters generated from xml
-    addGreenhouseLineary():void{
-        //created with the greenhouse offset's, a's n b's
-        //the cration array of lineary defined as follows: ordered offset1,a1,b1, ..., offsetn,an,bn
-        //Lineary checks for each offset whether x is smalle than the offset and returns ax + b if true 
-        let l = new Lineary([0,0,100,11,0,100,20,-3.555,139.111,25,-3.6,140,50,-2,100,100,0,0],0,100);
-        let inner= [];
-        for(let i=0; i <= 100; i+=10){
-            inner.push({'xValue': i, 'yValue': l.evaluate(i*0.6)});
-        }   
-        this.datascource.push(
-            {   'id': 'lin',
-                'values':inner
-            });
-    }
-
-    addLinearyTest():void{
-        //created with the greenhouse offset's, as n bs
-        //the cration array of lineary defined as follows: ordered offset1,a1,b1, ..., offsetn,an,bn
-        //Lineary checks for each offset whether x is smalle than the offset and returns ax + b if true 
-        let l = new Lineary([0,1,0,100,1,0],0,100);
-        let inner= [];
-        for(let i=0; i <= 100; i+=10){
-            inner.push({'xValue': i, 'yValue': l.evaluate(i)});
-        }   
-        this.datascource.push(
-            {   'id': 'lin',
-                'values':inner
-            });
-    }
 
     //loads the specific greenhouse example
     addGreenhouse():void{
@@ -253,6 +217,47 @@ export class ChartsComponent implements OnInit {
             return -2 * x + 100;
         }
         return 0; //values from 50 give zero points
+    }
+
+    /*linearServiceTest(){
+        let linearModel = new LinearFunctionModel([0,50,100],[1,1,1],[0,0,0]);
+        let inner=[];
+        for(let i=0; i <= 100; i+=10){
+            inner.push({'xValue': i, 'yValue': this.linearService.evaluateLinear(i, linearModel)});
+        }   
+        this.datascource.push(
+            {   'id': 'linearService',
+                'values':inner
+            });
+    }*/
+
+    linearServiceTest(){
+        let linearModel = new LinearFunctionModel([0,11,20,25,50,100],[0,-3.555,-3.6,-2,0],[100,139.111,140,100,0]);
+        let inner=[];
+        for(let i=0; i <= 100; i+=10){
+            inner.push({'xValue': i, 'yValue': this.linearService.evaluateLinear(i*0.6, linearModel)});
+            console.log('x: '+i + 'y: '+ this.linearService.evaluateLinear(i*0.6, linearModel));
+        }   
+        this.datascource.push(
+            {   'id': 'greenhouseService',
+                'values':inner
+            });
+    }
+
+    //hardcoded linear function, could work with parameters generated from xml
+    addGreenhouseLineary():void{
+        //created with the greenhouse offset's, a's n b's
+        //the cration array of lineary defined as follows: ordered offset1,a1,b1, ..., offsetn,an,bn
+        //Lineary checks for each offset whether x is smalle than the offset and returns ax + b if true 
+        let l = new Lineary([0,0,100,11,0,100,20,-3.555,139.111,25,-3.6,140,50,-2,100,100,0,0],0,100);
+        let inner= [];
+        for(let i=0; i <= 100; i+=10){
+            inner.push({'xValue': i, 'yValue': l.evaluate(i*0.6)});
+        }   
+        this.datascource.push(
+            {   'id': 'lin',
+                'values':inner
+            });
     }
 
 }
