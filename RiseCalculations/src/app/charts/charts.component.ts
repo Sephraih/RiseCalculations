@@ -142,12 +142,12 @@ export class ChartsComponent implements OnInit {
         for(let j=1; j <= 3; j+=1){
             this.addSigmoid(j);
         }
-        
+        /*
         
         this.addSigmoid(0.5)
-        /*
+        
         this.addSigmoid(0.7);
-        */
+        
 
         //load exp approach with base 7
         this.addExpApp(7);
@@ -156,7 +156,8 @@ export class ChartsComponent implements OnInit {
         this.addGreenhouse();
         //simulate the GreenhouseGasBilance example with the Lineary function,using the example's parameters to build it
         //both functions return the exact same graph, graph is the same as in the excel sheet as well, they are hardcoded examples
-        this.addLineary();
+        */
+        this.addLineary2();
         
 
     }
@@ -201,11 +202,26 @@ export class ChartsComponent implements OnInit {
             });
     }
 
+    addLineary2():void{
+        //created with the greenhouse offset's, as n bs
+        //the cration array of lineary defined as follows: ordered offset1,a1,b1, ..., offsetn,an,bn
+        //Lineary checks for each offset whether x is smalle than the offset and returns ax + b if true 
+        let l = new Lineary([0,1,0,100,1,0],0,100);
+        let inner= [];
+        for(let i=0; i <= 100; i+=10){
+            inner.push({'xValue': i, 'yValue': l.evaluate(i)});
+        }   
+        this.datascource.push(
+            {   'id': 'lin',
+                'values':inner
+            });
+    }
+
     //loads the specific greenhouse example
     addGreenhouse():void{
         let inner= [];
             for(let i=0; i <= 100; i+=10){
-                inner.push({'xValue': i, 'yValue': this.greenHouseGasBilance(i)});
+                inner.push({'xValue': i, 'yValue': this.greenHouseGasBalance(i)});
             }   
             this.datascource.push(
                 {   'id': 'GH',
@@ -215,7 +231,7 @@ export class ChartsComponent implements OnInit {
 
     //this is a specific example for the proof of concept, hence hardcoded, 
     //may be deleted along with "addGreenhouse" function and their method calls when no longer required.
-    greenHouseGasBilance(x:number):number{
+    greenHouseGasBalance(x:number):number{
         x= x*60; //original input values ranged from 1100 to 5000, this generates a plot from 0 to 6000 
         x = x/100; //all return value calculations were simplied by /100 too (see appold.ts for reference)
         if (x < 11) { // a=0, b=100 // 

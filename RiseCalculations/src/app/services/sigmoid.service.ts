@@ -18,9 +18,9 @@ export class SigmoidService {
         */
 
         //could throw exception / abbort calculation /could be left out if only called with normalised values.
-        if(x<0 || x>100){console.log("please use normalisation service on x before evaluating it.");}
+        if(x<0 || x>100){console.error("please use normalisation service on x before evaluating it.");}
         
-      // normalise so that the input range is double the scale, centered around zero
+        // normalise so that the input range is double the scale, centered around zero
         x = x/(100/(2*s))-s;
         // get result of the chosen 
         x = Math.tanh(x);

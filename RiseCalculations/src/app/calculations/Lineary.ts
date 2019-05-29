@@ -43,8 +43,8 @@ export class Lineary {
     for(let i=0; i < this.offsets.length; i++) {
       if(x<this.offsets[i]){
         let ret = this.a[i] * x +this.b[i];
-        if(ret<this.fmin){return 0;}
-        if(ret>this.fmax){return 100;}
+       // if(ret<this.fmin){return 0;}
+        // if(ret>this.fmax){return 100;}
         return ret;
       }
     }
