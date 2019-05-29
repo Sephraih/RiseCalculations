@@ -232,7 +232,7 @@ export class ChartsComponent implements OnInit {
     }*/
 
     linearServiceTest(){
-        let linearModel = new LinearFunctionModel([0,11,20,25,50,100],[0,-3.555,-3.6,-2,0],[100,139.111,140,100,0]);
+        let linearModel = new LinearFunctionModel([0,11,20,25,50,100],[0,0,-3.555,-3.6,-2,0],[100,100,139.111,140,100,0]);
         let inner=[];
         for(let i=0; i <= 100; i+=10){
             inner.push({'xValue': i, 'yValue': this.linearService.evaluateLinear(i*0.6, linearModel)});
