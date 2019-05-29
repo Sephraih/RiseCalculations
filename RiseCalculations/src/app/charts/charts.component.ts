@@ -34,22 +34,10 @@ export class ChartsComponent implements OnInit {
     y;
     z;
     line;
-    ltest=new Lineary([0,1,100,100,1,100],0,100);
+    ltest=new Lineary([0,1,0,100,1,0],0,100);
 
-	datascource = [{
-        'id': 'FunctionType X',
-        'values': [
-            {'xValue': 10, 'yValue': this.ltest.evaluate(10)},
-            {'xValue': 20, 'yValue': this.ltest.evaluate(20)},
-            {'xValue': 30, 'yValue': this.ltest.evaluate(30)},
-            {'xValue': 40, 'yValue': this.ltest.evaluate(40)},
-            {'xValue': 50, 'yValue': this.ltest.evaluate(50)},
-            {'xValue': 60, 'yValue': this.ltest.evaluate(60)},
-            {'xValue': 70, 'yValue': this.ltest.evaluate(70)},
-            {'xValue': 80, 'yValue': this.ltest.evaluate(80)},
-            {'xValue': 90, 'yValue': this.ltest.evaluate(90)},
-            {'xValue': 100, 'yValue': this.ltest.evaluate(100)},
-    ]}]; // empty array, built on init
+	// empty array, built on init
+    datascource = [];
 
 	private _numberOfVerticalGridlines: number = 10;
 	private _numberOfHorizontalGridlines: number = 10;
@@ -58,6 +46,9 @@ export class ChartsComponent implements OnInit {
 
     ngOnInit() {
         
+        for(let i = 0; i <= 100; i+=10){
+			console.log(i, this.ltest.evaluate(i));
+		}
         //load example functions to the datasource
         this.addFunctions();
 
@@ -151,7 +142,7 @@ export class ChartsComponent implements OnInit {
     // testing environment, predefined calls to draw some functions
     addFunctions():void{
         
-        /*
+        
         //load sigmoids sigmoids with scale 1,2 and 3
         for(let j=1; j <= 3; j+=1){
             this.addSigmoid(j);
@@ -170,8 +161,9 @@ export class ChartsComponent implements OnInit {
         this.addGreenhouse();
         //simulate the GreenhouseGasBilance example with the Lineary function,using the example's parameters to build it
         //both functions return the exact same graph, graph is the same as in the excel sheet as well, they are hardcoded examples
+        this.addGreenhouseLineary();
         */
-        this.addLineary2();
+        this.addLinearyTest(); // f(x) = x ; a=1, b=0, max =100, min = 0
         
 
     }
@@ -201,7 +193,7 @@ export class ChartsComponent implements OnInit {
     }
 
     //hardcoded linear function, could work with parameters generated from xml
-    addLineary():void{
+    addGreenhouseLineary():void{
         //created with the greenhouse offset's, a's n b's
         //the cration array of lineary defined as follows: ordered offset1,a1,b1, ..., offsetn,an,bn
         //Lineary checks for each offset whether x is smalle than the offset and returns ax + b if true 
@@ -216,7 +208,7 @@ export class ChartsComponent implements OnInit {
             });
     }
 
-    addLineary2():void{
+    addLinearyTest():void{
         //created with the greenhouse offset's, as n bs
         //the cration array of lineary defined as follows: ordered offset1,a1,b1, ..., offsetn,an,bn
         //Lineary checks for each offset whether x is smalle than the offset and returns ax + b if true 
@@ -260,7 +252,7 @@ export class ChartsComponent implements OnInit {
         if(x < 50){
             return -2 * x + 100;
         }
-        return 0;
+        return 0; //values from 50 give zero points
     }
 
 }

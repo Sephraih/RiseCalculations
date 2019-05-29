@@ -26,13 +26,13 @@
 	.line {
 		fill: none;
 		stroke: steelblue;
-		stroke-width: 1.5px;
+		stroke-width: 1px;
 	}
 
 	g.tick {
 		color: lightgrey;
 		stroke: black;
-		stroke-opacity: 0.7;
+		stroke-opacity: 1;
 		shape-rendering: crispEdges;
 	  }
 
