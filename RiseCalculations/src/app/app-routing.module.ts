@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CalculationsComponent } from './calculations/calculations.component';
+import { ParserOutputComponent } from './parser-output/parser-output.component';
 import { ChartsComponent } from './charts/charts.component';
 
 // Base-Url: localhost:4200/
@@ -8,7 +8,7 @@ import { ChartsComponent } from './charts/charts.component';
 const routes: Routes = [
 	{  
 		path: 'xml',
-		component: CalculationsComponent
+		component: ParserOutputComponent
 	},
 	{  
 		path: 'charts',

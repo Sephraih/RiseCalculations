@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CalculationsComponent } from './calculations.component';
+import { ParserOutputComponent } from './parser-output.component';
 
-describe('CalculationsComponent', () => {
-  let component: CalculationsComponent;
-  let fixture: ComponentFixture<CalculationsComponent>;
+describe('ParserOutputComponent', () => {
+  let component: ParserOutputComponent;
+  let fixture: ComponentFixture<ParserOutputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CalculationsComponent ]
+      declarations: [ ParserOutputComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CalculationsComponent);
+    fixture = TestBed.createComponent(ParserOutputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

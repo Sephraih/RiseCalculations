@@ -1,21 +1,34 @@
-// scripted version of the excel example, for reference.
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-test',
+  templateUrl: './test.component.html',
+  styleUrls: ['./test.component.css']
+})
+export class TestComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+
+    // scripted version of the excel example, for reference.
 
 // the complex formula from the sheet in code (see bottom of file) simplified.
 function greenHouseGasBilance(x:number):number{
-    x = x/100
-    if (x < 11) { // a=0, b=100
-        return 100;
-    }
-    if(x < 20){ 
-        return 100-(32/9)*(x-11); //  - 3.5555x + 139.111 ; a =-3.555 , b = 139.111
-    }
-    if(x < 25){
-        return 68-(18/5)*(x-20); // -3.6x + 140
-    }
-    if(x < 50){
-        return 50-(50/25)*(x-25); // -2x + 100
-    }
-    return 0;
+  x = x/100
+  if (x < 11) { // a=0, b=100
+      return 100;
+  }
+  if(x < 20){ 
+      return 100-(32/9)*(x-11); //  - 3.5555x + 139.111 ; a =-3.555 , b = 139.111
+  }
+  if(x < 25){
+      return 68-(18/5)*(x-20); // -3.6x + 140
+  }
+  if(x < 50){
+      return 50-(50/25)*(x-25); // -2x + 100
+  }
+  return 0;
 }
 
 //Energy Management
@@ -29,9 +42,9 @@ let realEnergyPoints =3500;
 let enSavPot = realEnergyPoints/potEnergyPoints;
 
 function ynp(a:String):number{
-    if(a==="No"|| a==="No"){return 0;}
-    if(a==="Yes"|| a==="Yes"){return 100;}
-    return 50;
+  if(a==="No"|| a==="No"){return 0;}
+  if(a==="Yes"|| a==="Yes"){return 100;}
+  return 50;
 }
 let generalAspectPoints = (ynp(monitoredEnergy) + ynp(renEnergused))/2;
 let energySavingPotPoints = ((enSavPot + ynp(activeManagement))/2);
@@ -47,12 +60,12 @@ let renewableEnergyConsumption=11290.6;
 let renewablePercent = 100/energyConsumption*renewableEnergyConsumption;
 
 function energyConsumptionScore(ec:number,rp:number):number{
-    let a =1.25 +(rp/1000)**0.5;
-    let b =1.1;
-    let c= 400;
-    let d=0.83;
-    let r = 1400+rp**1.6;
-    return 100-(100/(1+Math.exp((a)-(ec**d-b*r)/c)));
+  let a =1.25 +(rp/1000)**0.5;
+  let b =1.1;
+  let c= 400;
+  let d=0.83;
+  let r = 1400+rp**1.6;
+  return 100-(100/(1+Math.exp((a)-(ec**d-b*r)/c)));
 }
 //result energy intensity
 let energyIntensity =energyConsumptionScore(energyConsumption,renewablePercent);
@@ -119,24 +132,25 @@ let GHGEmissionArea = GHGFarmTotal / farmArea;
 let GreenHouseGasBalance = ghgBilance(GHGEmissionArea);
 
 function ghgBilance(ghgea:number):number{
-    if (ghgea < 1100) {
-        return 100;
-    }
-    if(ghgea < 2000){
-        return 100-(32/900)*(ghgea-1100);
-    }
-    if(ghgea < 2500){
-        return 68-(18/500)*(ghgea-2000);
-    }
-    if(ghgea < 5000){
-        return 50-(50/2500)*(ghgea-2500);
-    }
-    return 0;
+  if (ghgea < 1100) {
+      return 100;
+  }
+  if(ghgea < 2000){
+      return 100-(32/900)*(ghgea-1100);
+  }
+  if(ghgea < 2500){
+      return 68-(18/500)*(ghgea-2000);
+  }
+  if(ghgea < 5000){
+      return 50-(50/2500)*(ghgea-2500);
+  }
+  return 0;
 }
-
-
-
 
 //total score
 let totalScore = (energyManagement + GreenHouseGasBalance + energyIntensity)/3;
 console.log(Math.round(totalScore));
+
+  }
+
+}
