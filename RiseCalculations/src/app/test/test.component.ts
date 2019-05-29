@@ -11,7 +11,7 @@ export class TestComponent implements OnInit {
 
   ngOnInit() {
 
-    // scripted version of the excel example, for reference.
+	// scripted version of the excel example, for reference.
 
 // the complex formula from the sheet in code (see bottom of file) simplified.
 function greenHouseGasBilance(x:number):number{

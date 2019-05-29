@@ -1,3 +1,6 @@
+
+
+
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 
 import * as d3 from 'd3-selection';
@@ -7,7 +10,7 @@ import * as d3Shape from 'd3-shape';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
 import { SigmoidService } from '../services/sigmoid.service';
-import { ExponentialApproachService } from '../services/exponential.service';
+import { ExponentialService } from '../services/exponential.service';
 import { StandardLinearModel, InvertedLinearModel } from '../models/function.models';
 import { LinearService } from '../services/linear.service';
 
@@ -44,7 +47,7 @@ export class ChartsComponent implements OnInit {
 	private _numberOfHorizontalGridlines: number = 10;
 
     constructor(private sigmoidService: SigmoidService,
-                private exponentialApproeachService:ExponentialApproachService,
+                private exponentialService:ExponentialService,
                 private linearService: LinearService) {}
 
     ngOnInit() {
@@ -174,7 +177,7 @@ export class ChartsComponent implements OnInit {
     addExpApp(j:number):void{
         let inner= [];
             for(let i=0; i <= 100; i+=10){
-                inner.push({'xValue': i, 'yValue': this.exponentialApproeachService.evaluate(i,j)});
+                inner.push({'xValue': i, 'yValue': this.exponentialService.evaluate(i,j)});
             }   
             this.datascource.push(
                 {   'id': 'exp('+j+')',
@@ -250,7 +253,6 @@ export class ChartsComponent implements OnInit {
                 'values':inner
             });
     }
-
     
 
 }

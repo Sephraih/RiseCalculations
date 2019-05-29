@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 
 //service-implementation of the Sigmoid class
@@ -31,8 +32,6 @@ export class SigmoidService {
         // the result between -1 and 1 is to be normalised to range between 0 and 100 (and rounded, returned).
         return  Math.round((x+1)*50); 
     }
-
-
 
     
 }

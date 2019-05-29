@@ -1,3 +1,4 @@
+
 	import { Component, OnInit } from '@angular/core';
 	import { ParserService } from '../services/parser.service';
 	import { FunctionType } from '../models/function-types.model';
@@ -28,9 +29,9 @@
 
 		this.getJsonFromXml(this.fileName, (json: string)=>{
 
-			var functionObjectArray = this.parserService.convertToObjects(json);
+			this.calculationUnits = this.parserService.convertToObjects(json);
 						
-			console.log(functionObjectArray);
+			console.log(this.calculationUnits);
 
 		})
 	}
@@ -47,6 +48,7 @@
 
 
 	isLineary(functionType: any){
+		console.log(functionType);
 		return functionType.constructor.name === FunctionType.Lineary;
 	}
 
@@ -55,4 +57,3 @@
 		return functionType.constructor.name === FunctionType.Sigmoid;
 	}
 }
-

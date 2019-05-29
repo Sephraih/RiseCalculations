@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ParserOutputComponent } from './parser-output/parser-output.component';
 import { ChartsComponent } from './charts/charts.component';
+import { ParserOutputComponent } from './parser-output/parser-output.component';
 
 // Base-Url: localhost:4200/
 // to automatically add a new component, run: ng g c calculations/newcomponent

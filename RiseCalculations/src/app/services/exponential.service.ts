@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 
 @Injectable()
-export class ExponentialApproachService {
+export class ExponentialService {
 
    
   // the exponential approach builds a sigmoid function s(x) with the function f(x)=x^2: 
