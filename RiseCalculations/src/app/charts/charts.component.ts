@@ -34,8 +34,22 @@ export class ChartsComponent implements OnInit {
     y;
     z;
     line;
-    
-	datascource = []; // empty array, built on init
+    ltest=new Lineary([0,1,100,100,1,100],0,100);
+
+	datascource = [{
+        'id': 'FunctionType X',
+        'values': [
+            {'xValue': 10, 'yValue': this.ltest.evaluate(10)},
+            {'xValue': 20, 'yValue': this.ltest.evaluate(20)},
+            {'xValue': 30, 'yValue': this.ltest.evaluate(30)},
+            {'xValue': 40, 'yValue': this.ltest.evaluate(40)},
+            {'xValue': 50, 'yValue': this.ltest.evaluate(50)},
+            {'xValue': 60, 'yValue': this.ltest.evaluate(60)},
+            {'xValue': 70, 'yValue': this.ltest.evaluate(70)},
+            {'xValue': 80, 'yValue': this.ltest.evaluate(80)},
+            {'xValue': 90, 'yValue': this.ltest.evaluate(90)},
+            {'xValue': 100, 'yValue': this.ltest.evaluate(100)},
+    ]}]; // empty array, built on init
 
 	private _numberOfVerticalGridlines: number = 10;
 	private _numberOfHorizontalGridlines: number = 10;
@@ -137,7 +151,7 @@ export class ChartsComponent implements OnInit {
     // testing environment, predefined calls to draw some functions
     addFunctions():void{
         
-        
+        /*
         //load sigmoids sigmoids with scale 1,2 and 3
         for(let j=1; j <= 3; j+=1){
             this.addSigmoid(j);
