@@ -29,9 +29,9 @@
 
 		this.getJsonFromXml(this.fileName, (json: string)=>{
 
-			var functionObjectArray = this.parserService.convertToObjects(json);
+			this.calculationUnits = this.parserService.convertToObjects(json);
 						
-			console.log(functionObjectArray);
+			console.log(this.calculationUnits);
 
 		})
 	}
