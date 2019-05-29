@@ -8,9 +8,9 @@ import { ParserService } from './services/parser.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartsComponent } from './charts/charts.component';
 import { SigmoidService } from './services/sigmoid.service';
-import { NormaliserService } from './services/normaliser.service';
-import { ExponentialApproachService } from './services/exponentialApproach.service';
 import { LinearService } from './services/linear.service';
+import { ExponentialService } from './services/exponential.service';
+import { NormaliserService } from './services/normaliser.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { LinearService } from './services/linear.service';
     ParserService,
     SigmoidService,
     NormaliserService,
-    ExponentialApproachService,
+    ExponentialService,
     LinearService
 	],
   bootstrap: [AppComponent]

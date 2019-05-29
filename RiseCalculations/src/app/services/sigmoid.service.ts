@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 
 //service-implementation of the Sigmoid class
@@ -8,7 +9,7 @@ export class SigmoidService {
     // Chosen sigmoid function : tanh(x) ; Hyperbolic tangent function 
     // Output range normed to [0-100]
     // Function input should be normed: normalise values using normalisation
-    public evaluate(x:number,s:number):number{
+    public evaluateSigmoid(x:number,s:number):number{
         /*
         //boundary value returns; may be checked for each call.
         //with n calls including one max and min call, it may be more efficient 
@@ -31,8 +32,6 @@ export class SigmoidService {
         // the result between -1 and 1 is to be normalised to range between 0 and 100 (and rounded, returned).
         return  Math.round((x+1)*50); 
     }
-
-
 
     
 }
