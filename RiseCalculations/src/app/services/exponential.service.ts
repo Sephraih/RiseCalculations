@@ -19,7 +19,7 @@ export class ExponentialService {
 
       //temporarily store input value as a
       let a:number = x;
-      // for x values between 0 and 2, the curve would develop to slowly and are hence to be cut off. 
+      // with x values between 0 and 2, the curve barely develops. 
       // accepted input from 0 to 100 is scaled to the new range: 2 to base
       // scaling the input to the range : 100/(exp*2) = scale factor ; input x /scale factor - a = input range from -a to a
       x = Math.abs(x/(100/((base-2)*2))-(base-2))+2
