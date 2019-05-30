@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LinearModel } from '../models/function.models';
 
-//service-implementation of the Linear class
 @Injectable()
 export class LinearService {
 

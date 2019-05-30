@@ -13,8 +13,5 @@ export class NormaliserService {
     // x value in percent of the boundary width, adapted to the input range
     return (x-min)/((max-min)/100); 
   }
-
-
-
     
 }

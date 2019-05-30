@@ -11,7 +11,7 @@ import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
 import { SigmoidService } from '../services/sigmoid.service';
 import { ExponentialService } from '../services/exponential.service';
-import { StandardLinearModel, InvertedLinearModel } from '../models/function.models';
+import { LinearModel } from '../models/function.models';
 import { LinearService } from '../services/linear.service';
 
 
@@ -224,7 +224,7 @@ export class ChartsComponent implements OnInit {
         let a = [1,1,1];
         let b = [0,0,0];
 
-        let linearModel = new StandardLinearModel(offset, a, b);
+        let linearModel = new LinearModel(offset, a, b);
         let inner=[];
         for(let i=0; i <= 100; i+=10){
             inner.push({'xValue': i, 'yValue': this.linearService.evaluateLinear(i, linearModel)});
@@ -235,14 +235,14 @@ export class ChartsComponent implements OnInit {
             });
     }
 
-    //linear function using the linear service and function model, could work with parameters generated from xml
+    //linear function using the linear.service and function.model, could work with parameters generated from xml
     linearServiceGreenhouse(){
 
         let offset = [0, 11, 20, 25, 50, 100];
         let a = [0, 0, -3.555, -3.6, -2, 0];
         let b = [100, 100, 139.111, 140, 100, 0];
 
-        let linearModel = new InvertedLinearModel(offset, a, b);
+        let linearModel = new LinearModel(offset, a, b);
         let inner=[];
         for(let i=0; i <= 100; i+=10){
             inner.push({'xValue': i, 'yValue': this.linearService.evaluateLinear(i*0.6, linearModel)});
