@@ -10,9 +10,10 @@ export class ExponentialService {
   // takes a normalised x; see normaliser service. (x ranges from 0 to 100)
   // base: input will further be normalised to range between 0 and the maximal base; in other words: f(x) =base^2
     public evaluate(x:number,base:number):number{
+      if(base <=2) return 0;
       //boundary returns, these are optional.
-      if(x==100){return 100;}
-      if(x==0){return 0;}
+      if(x==100) return 100;
+      if(x==0) return 0;
       //decideable logic (see sigmoid.service class for elaboration)
       if(x<0 || x>100){console.log("please use normalisation service on x before evaluating it.");}
        
@@ -25,8 +26,10 @@ export class ExponentialService {
       x = Math.abs(x/(100/((base-2)*2))-(base-2))+2
       x = x**2;
 
-      if(a<50){return Math.round(50-x);}
-      if(a>50){return Math.round(50+x);}
+      let scale = 50/base**2;
+
+      if(a<50) return Math.round(50-x*scale);
+      if(a>50) return Math.round(50+x*scale);
       return 50;
     }
 

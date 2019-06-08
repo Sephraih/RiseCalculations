@@ -55,23 +55,28 @@ export class ChartsComponent implements OnInit {
 
         // testing environment, predefined calls to draw some functions
         //load sigmoids sigmoids with scale 1,2 and 3
+        /*
         for(let j=1; j <= 3; j+=1){
             this.addSigmoid(j);
         }
         
-        //this.addSigmoid(0.5)
+        this.addSigmoid(0.5)
         
-        //this.addSigmoid(0.7);
-        
+        this.addSigmoid(0.7);
+        */
 
         //load exp approach with base 7
+        
         this.addExpApp(7);
+        this.addExpApp(5);
+        this.addExpApp(4);
+        this.addExpApp(3);
 
         //load GreenhouseGasBilance example; see appold.ts for reference, this is the forumua from the excel sheet
-        this.addGreenhouse();
+        //this.addGreenhouse();
         //simulate the GreenhouseGasBilance example with the Lineary function,using the example's parameters to build it
         //both functions return the exact same graph, graph is the same as in the excel sheet as well, they are hardcoded examples
-        this.linearServiceGreenhouse();
+        //this.linearServiceGreenhouse();
 
         
         this.data = this.datascource.map((v) => v.values.map((v) => v.xValue ))[0];
@@ -184,7 +189,6 @@ export class ChartsComponent implements OnInit {
                     'values':inner
                 });
     }
-
 
     //loads the specific greenhouse example
     addGreenhouse():void{
