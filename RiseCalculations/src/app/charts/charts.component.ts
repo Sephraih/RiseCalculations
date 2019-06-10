@@ -55,7 +55,7 @@ export class ChartsComponent implements OnInit {
 
         // testing environment, predefined calls to draw some functions
         //load sigmoids sigmoids with scale 1,2 and 3
-        /*
+        /* 
         for(let j=1; j <= 3; j+=1){
             this.addSigmoid(j);
         }
@@ -63,17 +63,19 @@ export class ChartsComponent implements OnInit {
         this.addSigmoid(0.5)
         
         this.addSigmoid(0.7);
-        */
+        
 
         //load exp approach with base 7
         
-        this.addExpApp(7);
         this.addExpApp(5);
         this.addExpApp(4);
         this.addExpApp(3);
+        this.addExpApp(7);
+        */
 
+        this.addSigmoid(3);
         //load GreenhouseGasBilance example; see appold.ts for reference, this is the forumua from the excel sheet
-        //this.addGreenhouse();
+        this.addGreenhouse();
         //simulate the GreenhouseGasBilance example with the Lineary function,using the example's parameters to build it
         //both functions return the exact same graph, graph is the same as in the excel sheet as well, they are hardcoded examples
         //this.linearServiceGreenhouse();
@@ -128,7 +130,7 @@ export class ChartsComponent implements OnInit {
             .attr('x', 853)
             .attr('dy', '0.71em')
             .attr('fill', '#000')
-            .text('Output Value');
+            .text('Input Value');
 
 
         this.g.append('g')
@@ -141,7 +143,7 @@ export class ChartsComponent implements OnInit {
             .attr('x', 20)
             .attr('dy', '0.71em')
             .attr('fill', '#000')
-            .text('Input Value');
+            .text('Output Value');
     }
 
     private drawPath(): void {
@@ -197,7 +199,7 @@ export class ChartsComponent implements OnInit {
                 inner.push({'xValue': i, 'yValue': this.greenHouseGasBalance(i)});
             }   
             this.datascource.push(
-                {   'id': 'GH',
+                {   'id': 'ghg calculated',
                     'values':inner
                 });
     }
@@ -253,7 +255,7 @@ export class ChartsComponent implements OnInit {
             console.log('x: '+i + 'y: '+ this.linearService.evaluateLinear(i*0.6, linearModel));
         }   
         this.datascource.push(
-            {   'id': 'greenhouseService',
+            {   'id': 'ghg linear service',
                 'values':inner
             });
     }
